@@ -9,7 +9,7 @@ BARRA="\033[1;36m============================================\033[0m"
 echo -e "$BARRA"
 cat << EOF
 
-           NEW KEY GENERATOR BY 8TH
+           NEW KEY GENERATOR BY JUAN
            INSTALACOES: $(cat $IVAR)
            
 EOF
@@ -61,14 +61,14 @@ echo -e "[$i] -> FERRAMENTA \033[1;31m[${arqx}]\033[0m"
 arq_list[$i]="${arqx}"
 let i++
 done
-echo -e "[x] -> TODAS FERRAMENTA"
-echo -e "[b] -> \033[1;33mINSTALACAO NEW-ADM\033[0m"
-read -p "Escolha os Arquivos a Serem Repassados: " readvalue
+echo -e "[x] -> TODAS LAS HERRAMIENTAS"
+echo -e "[b] -> \033[1;33mINSTALACAION NEW-ADM\033[0m"
+read -p "Escoja los archivos a ser Repasados: " readvalue
 [[ -z $readvalue ]] && readvalue="b"
-read -p "Nome do Usuario ( dono da Key ): " nombrevalue
-[[ -z $nombrevalue ]] && nombrevalue="unnamed"
-read -p "Key Fixa? [S/N]: " -e -i n fixakey
-[[ $fixakey = @(s|S|y|Y) ]] && read -p "IP-Fixo: " IPFIX && nombrevalue+=[FIXA]
+read -p "Nombre del Usuario ( comprador de la Key ): " nombrevalue
+[[ -z $nombrevalue ]] && nombrevalue="Sin Nombre"
+read -p "Key Fija? [S/N]: " -e -i n fixakey
+[[ $fixakey = @(s|S|y|Y) ]] && read -p "IP-Fijo: " IPFIX && nombrevalue+=[FIXA]
 if [[ $readvalue = @(b|B) ]]; then
 #ADM BASIC
  arqslist="$BASICINST"
@@ -97,7 +97,7 @@ fi
 echo "$nombrevalue" > ${DIR}/${KEY}.name
 [[ ! -z $IPFIX ]] && echo "$IPFIX" > ${DIR}/${KEY}/keyfixa
 echo -e "$BARRA"
-echo -e "Key Ativa, e Aguardando Instalacao!"
+echo -e "Key Activa, Esperando Instalacion!"
 echo -e "$BARRA"
 }
 ofus () {
@@ -126,9 +126,9 @@ valuekey="$(date | md5sum | head -c10)"
 valuekey+="$(echo $(($RANDOM*10))|head -c 5)"
 fun_list "$valuekey"
 keyfinal=$(ofus "$IP:8888/$valuekey/$LIST")
-echo -e "KEY: $keyfinal\nGerada!"
+echo -e "KEY: $keyfinal\nGenerada!"
 echo -e "$BARRA"
-read -p "Enter to Finalize"
+read -p "Enter para Finalizar"
 }
 remover_key () {
 i=0
@@ -145,7 +145,7 @@ done
 keys=($keys)
 echo -e "$BARRA"
 while [[ -z ${keys[$value]} || -z $value ]]; do
-read -p "Escolha qual remover: " -e -i 0 value
+read -p "Escoja cual remover: " -e -i 0 value
 done
 [[ -d "$DIR/${keys[$value]}" ]] && rm -rf $DIR/${keys[$value]}* || return
 }
@@ -192,19 +192,19 @@ unset PID_GEN
 PID_GEN=$(ps x|grep -v grep|grep "http-server.sh")
 [[ ! $PID_GEN ]] && PID_GEN="\033[1;31moff" || PID_GEN="\033[1;32monline"
 echo -e "$BARRA"
-echo -e "Diretorio Dos Arquivos Repassados \033[1;31m${SCPT_DIR}\033[0m"
+echo -e "Directorio De Los Archivos Repasados \033[1;31m${SCPT_DIR}\033[0m"
 echo -e "$BARRA"
-echo -e "[1] = $(fun_trans ${id} "GERAR 1 KEY ALEATORIA")"
-echo -e "[2] = $(fun_trans ${id} "APAGAR OLHAR KEYS")"
+echo -e "[1] = $(fun_trans ${id} "GENERAR 1 KEY ALEATORIA")"
+echo -e "[2] = $(fun_trans ${id} "ANULAR/VER KEYS GENERADAS")"
 echo -e "[3] = $(fun_trans ${id} "INICIAR PARAR") KEYGEN $PID_GEN\033[0m"
 echo -e "[4] = $(fun_trans ${id} "VER LOG")"
-echo -e "[5] = $(fun_trans ${id} "MUDAR MENSAGEM")"
-echo -e "[6] = $(fun_trans ${id} "ATUALIZAR KEYS FIXA")"
-echo -e "[7] = $(fun_trans ${id} "ATUALIZAR GERADOR")"
-echo -e "[0] = $(fun_trans ${id} "SAIR")"
+echo -e "[5] = $(fun_trans ${id} "CAMBIAR MENSAJE")"
+echo -e "[6] = $(fun_trans ${id} "ACTUALIZAR KEYS FIJA")"
+echo -e "[7] = $(fun_trans ${id} "ACTUALIZAR GENERADOR")"
+echo -e "[0] = $(fun_trans ${id} "SALIR")"
 echo -e "$BARRA"
 while [[ ${varread} != @([0-7]) ]]; do
-read -p "Opcao: " varread
+read -p "Escoja una Opcion: " varread
 done
 echo -e "$BARRA"
 if [[ ${varread} = 1 ]]; then
