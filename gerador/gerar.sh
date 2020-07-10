@@ -9,11 +9,11 @@ BARRA="\033[1;36m============================================\033[0m"
 echo -e "$BARRA"
 cat << EOF
 
-           NEW KEY GENERATOR BY JUAN
-           INSTALACOES: $(cat $IVAR)
+           GENERADOR ADM-NEW KEYS BY  ➣➣ | JUAN |
+          INSTALACIONES: $(cat $IVAR)
            
 EOF
-[[ -e $IVAR2 ]] && echo -e "\033[1;32mFIXKEY: $(cat $IVAR2)\033[0m"
+[[ -e $IVAR2 ]] && echo -e "\033[1;32mKEY FIJA: $(cat $IVAR2)\033[0m"
 SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
 rm ${SCPT_DIR}/*.x.c &> /dev/null
@@ -61,8 +61,8 @@ echo -e "[$i] -> FERRAMENTA \033[1;31m[${arqx}]\033[0m"
 arq_list[$i]="${arqx}"
 let i++
 done
-echo -e "[x] -> TODAS LAS HERRAMIENTAS"
-echo -e "[b] -> \033[1;33mINSTALACAION NEW-ADM\033[0m"
+echo -e "[x] -> \033[0;31mGENERADOR DE KEYS\033[0m"
+echo -e "[b] -> \033[1;33mINSTALACIÓN ADM-NEW\033[0m"
 read -p "Escoja los archivos a ser Repasados: " readvalue
 [[ -z $readvalue ]] && readvalue="b"
 read -p "Nombre del Usuario ( comprador de la Key ): " nombrevalue
@@ -175,7 +175,7 @@ killall http-server.sh
 fi
 }
 message_gen () {
-read -p "NEW MESSAGE: " MSGNEW
+read -p "NUEVO MENSAJE: " MSGNEW
 echo "$MSGNEW" > ${SCPT_DIR}/message.txt
 echo -e "$BARRA"
 }
