@@ -45,7 +45,7 @@ ENV_ARQ="True"
  else
    if [[ ${USRIP} = "ERRO" ]]; then
     FILE="${DIR}/ERROR-KEY"
-    echo "KEY DE INSTALAÇAO!" > ${FILE}
+    echo "KEY DE INSTALAÃ‡AO!" > ${FILE}
     ENV_ARQ="False"
    fi
  fi
