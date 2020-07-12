@@ -9,11 +9,11 @@ BARRA="\033[1;36m============================================\033[0m"
 echo -e "$BARRA"
 cat << EOF
 
-           GENERADOR ADM-NEW KEYS BY  ➣➣ | JUAN |
-          INSTALACIONES: $(cat $IVAR)
+           NEW KEY GENERATOR BY 8TH
+           INSTALACOES: $(cat $IVAR)
            
 EOF
-[[ -e $IVAR2 ]] && echo -e "\033[1;32mKEY FIJA: $(cat $IVAR2)\033[0m"
+[[ -e $IVAR2 ]] && echo -e "\033[1;32mFIXKEY: $(cat $IVAR2)\033[0m"
 SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
 rm ${SCPT_DIR}/*.x.c &> /dev/null
@@ -61,14 +61,14 @@ echo -e "[$i] -> FERRAMENTA \033[1;31m[${arqx}]\033[0m"
 arq_list[$i]="${arqx}"
 let i++
 done
-echo -e "[x] -> \033[0;31mGENERADOR DE KEYS\033[0m"
-echo -e "[b] -> \033[1;33mINSTALACIÓN ADM-NEW\033[0m"
-read -p "Escoja los archivos a ser Repasados: " readvalue
+echo -e "[x] -> TODAS FERRAMENTA"
+echo -e "[b] -> \033[1;33mINSTALACAO NEW-ADM\033[0m"
+read -p "Escolha os Arquivos a Serem Repassados: " readvalue
 [[ -z $readvalue ]] && readvalue="b"
-read -p "Nombre del Usuario ( comprador de la Key ): " nombrevalue
-[[ -z $nombrevalue ]] && nombrevalue="Sin Nombre"
-read -p "Key Fija? [S/N]: " -e -i n fixakey
-[[ $fixakey = @(s|S|y|Y) ]] && read -p "IP-Fijo: " IPFIX && nombrevalue+=[FIXA]
+read -p "Nome do Usuario ( dono da Key ): " nombrevalue
+[[ -z $nombrevalue ]] && nombrevalue="unnamed"
+read -p "Key Fixa? [S/N]: " -e -i n fixakey
+[[ $fixakey = @(s|S|y|Y) ]] && read -p "IP-Fixo: " IPFIX && nombrevalue+=[FIXA]
 if [[ $readvalue = @(b|B) ]]; then
 #ADM BASIC
  arqslist="$BASICINST"
@@ -97,7 +97,7 @@ fi
 echo "$nombrevalue" > ${DIR}/${KEY}.name
 [[ ! -z $IPFIX ]] && echo "$IPFIX" > ${DIR}/${KEY}/keyfixa
 echo -e "$BARRA"
-echo -e "Key Activa, Esperando Instalacion!"
+echo -e "Key Ativa, e Aguardando Instalacao!"
 echo -e "$BARRA"
 }
 ofus () {
@@ -126,9 +126,9 @@ valuekey="$(date | md5sum | head -c10)"
 valuekey+="$(echo $(($RANDOM*10))|head -c 5)"
 fun_list "$valuekey"
 keyfinal=$(ofus "$IP:8888/$valuekey/$LIST")
-echo -e "KEY: $keyfinal\nGenerada!"
+echo -e "KEY: $keyfinal\nGerada!"
 echo -e "$BARRA"
-read -p "Enter para Finalizar"
+read -p "Enter to Finalize"
 }
 remover_key () {
 i=0
@@ -145,7 +145,7 @@ done
 keys=($keys)
 echo -e "$BARRA"
 while [[ -z ${keys[$value]} || -z $value ]]; do
-read -p "Escoja cual remover: " -e -i 0 value
+read -p "Escolha qual remover: " -e -i 0 value
 done
 [[ -d "$DIR/${keys[$value]}" ]] && rm -rf $DIR/${keys[$value]}* || return
 }
@@ -175,7 +175,7 @@ killall http-server.sh
 fi
 }
 message_gen () {
-read -p "NUEVO MENSAJE: " MSGNEW
+read -p "NEW MESSAGE: " MSGNEW
 echo "$MSGNEW" > ${SCPT_DIR}/message.txt
 echo -e "$BARRA"
 }
@@ -192,19 +192,19 @@ unset PID_GEN
 PID_GEN=$(ps x|grep -v grep|grep "http-server.sh")
 [[ ! $PID_GEN ]] && PID_GEN="\033[1;31moff" || PID_GEN="\033[1;32monline"
 echo -e "$BARRA"
-echo -e "Directorio De Los Archivos Repasados \033[1;31m${SCPT_DIR}\033[0m"
+echo -e "Diretorio Dos Arquivos Repassados \033[1;31m${SCPT_DIR}\033[0m"
 echo -e "$BARRA"
-echo -e "[1] = $(fun_trans ${id} "GENERAR 1 KEY ALEATORIA")"
-echo -e "[2] = $(fun_trans ${id} "ANULAR/VER KEYS GENERADAS")"
+echo -e "[1] = $(fun_trans ${id} "GERAR 1 KEY ALEATORIA")"
+echo -e "[2] = $(fun_trans ${id} "APAGAR OLHAR KEYS")"
 echo -e "[3] = $(fun_trans ${id} "INICIAR PARAR") KEYGEN $PID_GEN\033[0m"
 echo -e "[4] = $(fun_trans ${id} "VER LOG")"
-echo -e "[5] = $(fun_trans ${id} "CAMBIAR MENSAJE")"
-echo -e "[6] = $(fun_trans ${id} "ACTUALIZAR KEYS FIJA")"
-echo -e "[7] = $(fun_trans ${id} "ACTUALIZAR GENERADOR")"
-echo -e "[0] = $(fun_trans ${id} "SALIR")"
+echo -e "[5] = $(fun_trans ${id} "MUDAR MENSAGEM")"
+echo -e "[6] = $(fun_trans ${id} "ATUALIZAR KEYS FIXA")"
+echo -e "[7] = $(fun_trans ${id} "ATUALIZAR GERADOR")"
+echo -e "[0] = $(fun_trans ${id} "SAIR")"
 echo -e "$BARRA"
 while [[ ${varread} != @([0-7]) ]]; do
-read -p "Seleccione una Opcion: " varread
+read -p "Opcao: " varread
 done
 echo -e "$BARRA"
 if [[ ${varread} = 1 ]]; then
@@ -216,7 +216,7 @@ start_gen
 read -p "Enter"
 elif [[ ${varread} = 4 ]]; then
 echo -ne "\033[1;36m"
-cat /etc/gerar-sh-log2>/dev/null || echo "NINGUN REGISTRO EN ESTE MOMENTO"
+cat /etc/gerar-sh-log
 echo -ne "\033[0m" && read -p "Enter"
 elif [[ ${varread} = 5 ]]; then
 message_gen
